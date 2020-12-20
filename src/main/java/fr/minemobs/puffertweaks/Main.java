@@ -1,13 +1,20 @@
 package fr.minemobs.puffertweaks;
 
+import com.mojang.brigadier.CommandDispatcher;
+import fr.minemobs.puffertweaks.commands.SetFireCmd;
 import fr.minemobs.puffertweaks.init.BlockInit;
+import fr.minemobs.puffertweaks.init.CommandInit;
+import net.minecraft.command.CommandSource;
 import net.minecraft.item.*;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
@@ -24,6 +31,11 @@ public class Main {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BlockInit.BLOCKS.register(modEventBus);
         modEventBus.register(this);
+    }
+
+    @SubscribeEvent
+    public static void onCommonSetupEvent(FMLCommonSetupEvent event){
+        MinecraftForge.EVENT_BUS.register(CommandInit.class);
     }
 
     @SubscribeEvent

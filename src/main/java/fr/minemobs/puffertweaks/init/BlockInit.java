@@ -1,6 +1,7 @@
 package fr.minemobs.puffertweaks.init;
 
 import fr.minemobs.puffertweaks.Main;
+import fr.minemobs.puffertweaks.object.blocks.BathroomSink;
 import fr.minemobs.puffertweaks.object.blocks.DustBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -22,4 +23,11 @@ public class BlockInit {
                     .hardnessAndResistance(0.3F)
                     .sound(SoundType.GROUND)
     ));
+
+    public static final RegistryObject<Block> bathroom_sink = BLOCKS.register("bathroom_sink", () -> new BathroomSink(
+            AbstractBlock.Properties
+                    .create(Material.ROCK, MaterialColor.QUARTZ)
+                    .hardnessAndResistance(1F)
+    ));
+
 }

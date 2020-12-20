@@ -1,6 +1,3 @@
 {
-    //Items
-
-    //blocks
-    "block.puffertweaks.dust": "Dust"
+    "block.puffertweaks.dust_block": "Dust block"
 }

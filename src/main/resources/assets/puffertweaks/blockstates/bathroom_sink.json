@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "level=0": { "model": "puffertweaks:block/bathroom_sink" },
+    "level=1": { "model": "puffertweaks:block/bathroom_sink1"}
+  }
+}
