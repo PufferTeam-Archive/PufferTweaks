@@ -17,6 +17,9 @@ public class BlockInit {
             Main.modId);
 
     public static final RegistryObject<Block> gravel_dust = BLOCKS.register("dust_block", () -> new DustBlock(
-            AbstractBlock.Properties.create(Material.SAND, MaterialColor.STONE).hardnessAndResistance(0.3F).sound(SoundType.GROUND)
+            AbstractBlock.Properties
+                    .create(Material.SAND, MaterialColor.STONE)
+                    .hardnessAndResistance(0.3F)
+                    .sound(SoundType.GROUND)
     ));
 }

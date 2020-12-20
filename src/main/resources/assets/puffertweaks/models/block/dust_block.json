@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "puffermod:blocks/gravel_dust"
+        "all": "puffertweaks:blocks/dust_block"
     }
 }
