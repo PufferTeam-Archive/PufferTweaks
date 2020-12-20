@@ -29,7 +29,7 @@ public class BroadcastCmd {
 
     static int sendMessage(CommandContext<CommandSource> commandContext) throws CommandSyntaxException {
         ITextComponent messageValue = MessageArgument.getMessage(commandContext, "message");
-        String unformattedText = messageValue.getString();
+        String unformattedText = messageValue.getUnformattedComponentText();
         StringTextComponent coloredFormattedText = new StringTextComponent(unformattedText.replaceAll("&", "§"));
         ServerPlayerEntity sender = commandContext.getSource().asPlayer();
         MinecraftServer ms = sender.server;

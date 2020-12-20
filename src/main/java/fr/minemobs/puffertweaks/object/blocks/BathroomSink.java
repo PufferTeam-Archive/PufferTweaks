@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 import java.util.stream.Stream;
 
-public class BathroomSink extends Block {
+public class BathroomSink extends HorizontalBlock {
 
     CauldronBlock cb;
 
@@ -34,7 +34,7 @@ public class BathroomSink extends Block {
     private static final VoxelShape INSIDE = Block.makeCuboidShape(4, 2, 4, 12, 5, 12);
 
 
-    private static final VoxelShape SHAPE = Stream.of(
+    private static final VoxelShape SHAPE_N = Stream.of(
             Block.makeCuboidShape(4, 0, 3, 12, 5, 4),
             Block.makeCuboidShape(4, 0, 4, 12, 2, 12),
             Block.makeCuboidShape(7, 5, 13, 9, 8, 14),
@@ -49,11 +49,56 @@ public class BathroomSink extends Block {
         return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);
     }).get();
 
-    private static final VoxelShape SHAPE2 = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), VoxelShapes.or(SHAPE, INSIDE), IBooleanFunction.ONLY_FIRST);
+    private static final VoxelShape SHAPE_W = Stream.of(
+            Block.makeCuboidShape(4, 0, 4, 12, 2, 12),
+            Block.makeCuboidShape(12, 5, 10, 13, 6, 11),
+            Block.makeCuboidShape(3, 2, 12, 14, 5, 13),
+            Block.makeCuboidShape(3, 2, 3, 14, 5, 4),
+            Block.makeCuboidShape(3, 2, 4, 4, 5, 12),
+            Block.makeCuboidShape(12, 2, 4, 14, 5, 12),
+            Block.makeCuboidShape(13, 5, 7, 14, 8, 9),
+            Block.makeCuboidShape(10, 8, 7, 14, 9, 9),
+            Block.makeCuboidShape(10, 7.699999999999999, 7, 11, 8, 9),
+            Block.makeCuboidShape(12, 5, 5, 13, 6, 6),
+            Block.makeCuboidShape(12, 1, 5, 13, 2, 11)
+    ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
+
+    private static final VoxelShape SHAPE_S = Stream.of(
+            Block.makeCuboidShape(4, 0, 4, 12, 2, 12),
+            Block.makeCuboidShape(10, 5, 3, 11, 6, 4),
+            Block.makeCuboidShape(12, 2, 2, 13, 5, 13),
+            Block.makeCuboidShape(3, 2, 2, 4, 5, 13),
+            Block.makeCuboidShape(4, 2, 12, 12, 5, 13),
+            Block.makeCuboidShape(4, 2, 2, 12, 5, 4),
+            Block.makeCuboidShape(7, 5, 2, 9, 8, 3),
+            Block.makeCuboidShape(7, 8, 2, 9, 9, 6),
+            Block.makeCuboidShape(7, 7.699999999999999, 5, 9, 8, 6),
+            Block.makeCuboidShape(5, 5, 3, 6, 6, 4),
+            Block.makeCuboidShape(5, 1, 3, 11, 2, 4)
+    ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
+
+    private static final VoxelShape SHAPE_E = Stream.of(
+            Block.makeCuboidShape(4, 0, 4, 12, 2, 12),
+            Block.makeCuboidShape(3, 5, 5, 4, 6, 6),
+            Block.makeCuboidShape(2, 2, 3, 13, 5, 4),
+            Block.makeCuboidShape(2, 2, 12, 13, 5, 13),
+            Block.makeCuboidShape(12, 2, 4, 13, 5, 12),
+            Block.makeCuboidShape(2, 2, 4, 4, 5, 12),
+            Block.makeCuboidShape(2, 5, 7, 3, 8, 9),
+            Block.makeCuboidShape(2, 8, 7, 6, 9, 9),
+            Block.makeCuboidShape(5, 7.699999999999999, 7, 6, 8, 9),
+            Block.makeCuboidShape(3, 5, 10, 4, 6, 11),
+            Block.makeCuboidShape(3, 1, 5, 4, 2, 11)
+    ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
+
+    private static final VoxelShape SHAPE_2 = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), VoxelShapes.or(SHAPE_N, INSIDE), IBooleanFunction.ONLY_FIRST);
 
     public BathroomSink(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, Integer.valueOf(0)));
+        this.setDefaultState(this.stateContainer.getBaseState()
+                .with(LEVEL, Integer.valueOf(0))
+                .with(HORIZONTAL_FACING, Direction.NORTH)
+        );
     }
 
     @Override
@@ -63,7 +108,18 @@ public class BathroomSink extends Block {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
+        switch(state.get(HORIZONTAL_FACING)) {
+            case NORTH:
+                return SHAPE_N;
+            case SOUTH:
+                return SHAPE_S;
+            case EAST:
+                return SHAPE_E;
+            case WEST:
+                return SHAPE_W;
+            default:
+                return SHAPE_N;
+        }
     }
 
     public void setWaterLevel(World worldIn, BlockPos pos, BlockState state, int level) {
@@ -71,6 +127,7 @@ public class BathroomSink extends Block {
         worldIn.updateComparatorOutputLevel(pos, this);
     }
 
+    @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         ItemStack itemstack = player.getHeldItem(handIn);
         if (itemstack.isEmpty()) {
@@ -111,19 +168,40 @@ public class BathroomSink extends Block {
         return ActionResultType.PASS;
     }
 
+    @Override
     public boolean hasComparatorInputOverride(BlockState state) {
         return true;
     }
 
+    @Override
     public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
         return blockState.get(LEVEL);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(LEVEL);
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        super.fillStateContainer(builder);
+        builder.add(LEVEL);
+        builder.add(HORIZONTAL_FACING);
+    }
+
+    @Override
     public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
     }
 }
