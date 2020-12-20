@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import fr.minemobs.puffertweaks.commands.SetFireCmd;
 import fr.minemobs.puffertweaks.init.BlockInit;
 import fr.minemobs.puffertweaks.init.CommandInit;
+import fr.minemobs.puffertweaks.init.ItemInit;
 import net.minecraft.command.CommandSource;
 import net.minecraft.item.*;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,6 +31,7 @@ public class Main {
     public Main(){
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BlockInit.BLOCKS.register(modEventBus);
+        ItemInit.ITEMS.register(modEventBus);
         modEventBus.register(this);
     }
 
