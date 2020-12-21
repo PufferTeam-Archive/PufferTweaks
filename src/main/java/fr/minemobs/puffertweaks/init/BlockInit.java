@@ -1,6 +1,7 @@
 package fr.minemobs.puffertweaks.init;
 
 import fr.minemobs.puffertweaks.Main;
+import fr.minemobs.puffertweaks.object.blocks.AcaciaCauldron;
 import fr.minemobs.puffertweaks.object.blocks.BathroomSink;
 import fr.minemobs.puffertweaks.object.blocks.DustBlock;
 import net.minecraft.block.AbstractBlock;
@@ -12,6 +13,8 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.rmi.registry.Registry;
 
 public class BlockInit {
 
@@ -26,6 +29,9 @@ public class BlockInit {
     ));
 
     public static final RegistryObject<Block> bathroom_sink = BLOCKS.register("bathroom_sink", () -> new BathroomSink(
+            AbstractBlock.Properties.from(Blocks.CAULDRON)));
+
+    public static final RegistryObject<Block> acacia_cauldron = BLOCKS.register("wooden_cauldron", () -> new AcaciaCauldron(
             AbstractBlock.Properties.from(Blocks.CAULDRON)));
 
 }

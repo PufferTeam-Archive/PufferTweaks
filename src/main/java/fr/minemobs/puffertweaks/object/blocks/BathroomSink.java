@@ -192,6 +192,20 @@ public class BathroomSink extends HorizontalBlock {
     }
 
     @Override
+    public void fillWithRain(World worldIn, BlockPos pos) {
+        if ((worldIn.rand.nextInt(20) % 2) == 0) {
+            float f = worldIn.getBiome(pos).getTemperature(pos);
+            if (!(f < 0.15F)) {
+                BlockState blockstate = worldIn.getBlockState(pos);
+                if (blockstate.get(LEVEL) < 1) {
+                    worldIn.setBlockState(pos, blockstate.func_235896_a_(LEVEL), 1);
+                }
+
+            }
+        }
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
