@@ -1,6 +1,6 @@
 {
 	"textures": {
-		"0": "block/water_still",
+		"water": "minecraft:block/water_still",
 		"1": "block/quartz_block_bottom",
 		"2": "block/quartz_block_side",
 		"3": "block/quartz_block_top",
@@ -92,7 +92,7 @@
 			"from": [4, 2, 4],
 			"to": [12, 5, 12],
 			"faces": {
-				"up": { "texture": "#0", "tintindex": 0, "cullface": "up" }
+				"up": { "texture": "water", "tintindex": 0 }
 			}
 		},
 		{

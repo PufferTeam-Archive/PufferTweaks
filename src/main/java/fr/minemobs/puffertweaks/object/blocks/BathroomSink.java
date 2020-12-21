@@ -1,8 +1,10 @@
 package fr.minemobs.puffertweaks.object.blocks;
 
+import fr.minemobs.puffertweaks.init.BlockInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.multiplayer.PlayerController;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,6 +31,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,7 +40,7 @@ import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.stream.Stream;
 
-public class BathroomSink extends HorizontalBlock implements IBlockColor {
+public class BathroomSink extends HorizontalBlock {
 
     CauldronBlock cb;
 
@@ -213,16 +216,5 @@ public class BathroomSink extends HorizontalBlock implements IBlockColor {
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
-    }
-
-    @Override
-    public int getColor(BlockState p_getColor_1_, @Nullable IBlockDisplayReader p_getColor_2_, @Nullable BlockPos p_getColor_3_, int p_getColor_4_) {
-        return 598538;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public MaterialColor getMaterialColor() {
-        return MaterialColor.WATER;
     }
 }

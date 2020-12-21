@@ -5,6 +5,7 @@ import fr.minemobs.puffertweaks.object.blocks.BathroomSink;
 import fr.minemobs.puffertweaks.object.blocks.DustBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -25,9 +26,6 @@ public class BlockInit {
     ));
 
     public static final RegistryObject<Block> bathroom_sink = BLOCKS.register("bathroom_sink", () -> new BathroomSink(
-            AbstractBlock.Properties
-                    .create(Material.ROCK, MaterialColor.QUARTZ)
-                    .hardnessAndResistance(1F)
-    ));
+            AbstractBlock.Properties.from(Blocks.CAULDRON)));
 
 }
