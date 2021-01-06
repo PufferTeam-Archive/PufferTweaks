@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "puffertweaks:block/dust_block" }
+  "variants": {
+    "": {
+      "model": "puffertweaks:block/dust_block"
     }
+  }
 }

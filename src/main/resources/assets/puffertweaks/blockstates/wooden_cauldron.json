@@ -1,8 +1,16 @@
 {
-    "variants": {
-        "level=0": { "model": "puffertweaks:block/wooden_cauldron" },
-        "level=1": { "model": "puffertweaks:block/wooden_cauldron1" },
-        "level=2": { "model": "puffertweaks:block/wooden_cauldron2" },
-        "level=3": { "model": "puffertweaks:block/wooden_cauldron3" }
+  "variants": {
+    "level=0": {
+      "model": "puffertweaks:block/wooden_cauldron"
+    },
+    "level=1": {
+      "model": "puffertweaks:block/wooden_cauldron1"
+    },
+    "level=2": {
+      "model": "puffertweaks:block/wooden_cauldron2"
+    },
+    "level=3": {
+      "model": "puffertweaks:block/wooden_cauldron3"
     }
+  }
 }

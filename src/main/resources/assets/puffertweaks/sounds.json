@@ -1,0 +1,32 @@
+{
+  "block.test_sound": {
+    "category": "block",
+    "subtitle": "block.puffertweaks.test_sound.sub",
+    "sounds": [
+      {
+        "name": "puffertweaks:block/test_sound",
+        "stream": true
+      }
+    ]
+  },
+  "block.open_faucet": {
+    "category": "block",
+    "subtitle": "block.puffertweaks.open_faucet.sub",
+    "sounds": [
+      {
+        "name": "puffertweaks:block/open_faucet",
+        "stream": true
+      }
+    ]
+  },
+  "block.close_faucet": {
+    "category": "block",
+    "subtitle": "block.puffertweaks.close_faucet.sub",
+    "sounds": [
+      {
+        "name": "puffertweaks:block/close_faucet",
+        "stream": true
+      }
+    ]
+  }
+}

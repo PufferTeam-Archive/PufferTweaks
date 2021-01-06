@@ -1,5 +1,8 @@
 {
-    "block.puffertweaks.dust_block": "Dust block",
-    "block.puffertweaks.wooden_cauldron": "Wooden cauldron",
-    "block.puffertweaks.bathroom_sink": "Bathroom sink"
+  "block.puffertweaks.dust_block": "Dust block",
+  "block.puffertweaks.wooden_cauldron": "Wooden cauldron",
+  "block.puffertweaks.bathroom_sink": "Bathroom sink",
+
+  "block.puffertweaks.close_faucet.sub": "Closed faucet",
+  "block.puffertweaks.open_faucet.sub": "Opened faucet"
 }

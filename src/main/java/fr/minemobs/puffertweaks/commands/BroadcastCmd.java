@@ -18,7 +18,7 @@ import java.util.List;
 
 public class BroadcastCmd {
 
-    public static void register(CommandDispatcher<CommandSource> dispatcher){
+    public static void register(CommandDispatcher<CommandSource> dispatcher) {
         LiteralArgumentBuilder<CommandSource> setItemHead
                 = Commands.literal("broadcast")
                 .requires((commandSource) -> commandSource.hasPermissionLevel(2))

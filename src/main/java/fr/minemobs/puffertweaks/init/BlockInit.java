@@ -14,8 +14,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.rmi.registry.Registry;
-
 public class BlockInit {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
@@ -33,5 +31,4 @@ public class BlockInit {
 
     public static final RegistryObject<Block> acacia_cauldron = BLOCKS.register("wooden_cauldron", () -> new AcaciaCauldron(
             AbstractBlock.Properties.from(Blocks.CAULDRON)));
-
 }

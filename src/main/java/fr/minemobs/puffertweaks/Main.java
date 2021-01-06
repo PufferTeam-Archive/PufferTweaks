@@ -5,6 +5,7 @@ import fr.minemobs.puffertweaks.commands.SetFireCmd;
 import fr.minemobs.puffertweaks.init.BlockInit;
 import fr.minemobs.puffertweaks.init.CommandInit;
 import fr.minemobs.puffertweaks.init.ItemInit;
+import fr.minemobs.puffertweaks.init.SoundList;
 import net.minecraft.command.CommandSource;
 import net.minecraft.item.*;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,15 +29,16 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger();
     public static final String modId = "puffertweaks";
 
-    public Main(){
+    public Main() {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BlockInit.BLOCKS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
+        SoundList.SOUNDS.register(modEventBus);
         modEventBus.register(this);
     }
 
     @SubscribeEvent
-    public static void onCommonSetupEvent(FMLCommonSetupEvent event){
+    public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
         MinecraftForge.EVENT_BUS.register(CommandInit.class);
     }
 
