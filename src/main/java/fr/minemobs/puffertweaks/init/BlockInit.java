@@ -4,6 +4,7 @@ import fr.minemobs.puffertweaks.Main;
 import fr.minemobs.puffertweaks.object.blocks.AcaciaCauldron;
 import fr.minemobs.puffertweaks.object.blocks.BathroomSink;
 import fr.minemobs.puffertweaks.object.blocks.DustBlock;
+import fr.minemobs.puffertweaks.object.blocks.IronLadder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -31,4 +32,7 @@ public class BlockInit {
 
     public static final RegistryObject<Block> acacia_cauldron = BLOCKS.register("wooden_cauldron", () -> new AcaciaCauldron(
             AbstractBlock.Properties.from(Blocks.CAULDRON)));
+
+    public static final RegistryObject<Block> IRON_LADDER = BLOCKS.register("iron_ladder", () -> new IronLadder(
+            AbstractBlock.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(4.4F).sound(SoundType.LADDER).notSolid()));
 }
